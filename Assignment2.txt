@@ -1,0 +1,104 @@
+Ans 1.	public static int arrayPairSum() {
+			int[] nums = new int[] {6,2,6,5,1,2};  // 1 2 3 4
+			
+			Arrays.sort(nums);
+			int sum=0;
+			for(int i=0 ; i<nums.length ; i+=2) {
+				sum+=nums[i];
+			}
+			
+			return sum;
+		} 
+		
+		
+Ans 2.	public int distributeCandies(int[] candyType) {
+        int n=candyType.length;
+        int count=1;
+        for(int i=1;i<n-1;i++){
+            if(candyType[i]!=candyType[i-1]){
+                count++;                
+            }
+        }
+        return count>n/2? n/2 : count;   
+    }
+	
+	
+Ans 4. public boolean canPlaceFlowers(int[] flowerbed, int n) {
+        int count = 0;
+        for(int i = 0; i < flowerbed.length && count < n; i++) {
+            if(flowerbed[i] == 0) {
+               int next = (i == flowerbed.length - 1) ? 0 : flowerbed[i + 1]; 
+               int prev = (i == 0) ? 0 : flowerbed[i - 1];
+               if(next == 0 && prev == 0) {
+                   flowerbed[i] = 1;
+                   count++;
+                   i++;
+               }
+            }
+        }
+        
+        return count == n;
+    }
+	
+An 5. public static void max3ArraySum() {
+		int arr[]= new int[] {-10,-20,11,1,2,3,4,1,5,6}; 
+		
+		int f=Integer.MIN_VALUE;
+		int s=Integer.MIN_VALUE,t=Integer.MIN_VALUE;
+		int min1 =Integer.MAX_VALUE;
+		int min2=Integer.MAX_VALUE;
+		
+		for(int i=0;i<arr.length;i++) {
+			if(arr[i]>f) {
+				t=s;
+				s=f;
+				f=arr[i];
+			}else if(arr[i]>s) {
+				t=s;
+				s=arr[i];
+			}else if(arr[i]>t){
+				t=arr[i];
+			}
+			if(arr[i]<min1) {
+				min2=min1;
+				min1=arr[i];
+			}// 1 2 11 12
+			else if(arr[i]<min2){
+				min2=arr[i];
+			}
+		}
+		int max= f*s*t>min1*min2*f? f*s*t : min1*min2*f;
+		System.out.println(max);
+	}
+	
+	
+Ans 6.  public int search(int[] nums, int target) {
+       
+        int l=0,h=nums.length-1;
+
+        while(l<=h){
+            int mid= (h+l)/2;
+            if(nums[mid]==target){
+                return mid;
+            }
+            if(nums[mid]>target){
+                h=mid-1;
+            }
+            if(nums[mid]<target){
+                l=mid+1;
+            }
+        }
+
+        return -1;
+    }
+
+
+Ans 7. public boolean isMonotonic(int[] A) {
+        if (A.length==1) return true;
+        int n=A.length;
+        boolean up= (A[n-1]-A[0])>0;
+        for (int i=0; i<n-1; i++)
+            if (A[i+1]!=A[i] && (A[i+1]-A[i]>0)!=up) 
+                return false;
+        return true;
+    }
